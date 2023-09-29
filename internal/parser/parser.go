@@ -1,21 +1,21 @@
 
 package parser
 
-import "fmt"
 import "flag"
 
-
-type JdcFlags struct {
-    filePtr *string
+type Arguments struct {
+    FilePtr *string
 }
 
-func getFlags() JdcFlags {
+var args Arguments
+
+func setFlags() {
     var filePtr = flag.String("file","","File to add comments")
-    return JdcFlags{filePtr}
+    args.FilePtr = filePtr
 }
 
-func Run() {
-    var flag_ = getFlags()
+func Run() Arguments {
+    setFlags()
     flag.Parse()
-    fmt.Println(*flag_.filePtr)
+    return Arguments{args.FilePtr}
 }
